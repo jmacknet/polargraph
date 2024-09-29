@@ -1,0 +1,11 @@
+[Unit]
+Description=Polargraph drawing robot server
+
+[Service]
+WorkingDirectory=/home/jmack/drawbot
+ExecStart=flask --app polargraph_server run -h 0.0.0.0
+User=jmack
+Group=jmack
+
+[Install]
+WantedBy=multi-user.target

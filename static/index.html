@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>Polargraph</title>
+<link rel="stylesheet" href="/static/pure-min.css">
+<link rel="stylesheet" href="/static/grids-responsive-min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/static/jquery-3.7.1.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('.printfile').click(function(){
+	  $.get('/print/' + $(this).data('filename'));
+	});
+	
+	$('.cancelprint').click(function(){
+	  $.get('/cancel');
+	});
+});
+
+setInterval(function(){
+	$.getJSON('/status', function( data ) {
+		if ( data['status'] == "printing" ) {
+			$('#status').text("Printing " + data['file']);
+		}
+		if ( data['status'] == "idle" ) {
+			$('#status').text("Idle");
+		}
+		if ( data['status'] == "cancelling" ) {
+			$('#status').text("Cancelling print");
+		}
+	});
+}, 2000) /* time in milliseconds (ie 2 seconds)*/
+</script>
+
+<style>
+body {
+	background-color: #fdfce9;
+	/*background-color: #ffffff;*/
+}
+
+.dbot-logo {
+	max-width: 350px;
+	margin: 0 auto;
+}
+
+.dbot-preview {
+	max-width: 300px;
+	max-height: 300px;
+	margin: 0.5em auto;
+	border: 2px solid #000000;
+}
+
+.dbot-caption {
+	margin: 0 auto;
+	font-weight: bold;
+	text-align: center;
+}
+
+.dbot-status {
+	font-weight: bold;
+	text-align: center;
+}
+
+.dbot-cancel {
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="pure-g">
+
+<div class="pure-u-1"><img src="/static/drawbot_logo.jpg" class="pure-img dbot-logo" /></div>
+
+<div class="pure-u-1 dbot-status">Printer Status: <span id="status"></span></div>
+
+<div class="pure-u-1 dbot-cancel"><button class="cancelprint pure-button">Cancel Printing</button></div>
+
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="cartoon_truck" class="printfile">
+	<div class="dbot-caption">Monster Truck</div>
+	<img src="/static/preview_cartoon_truck.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="mario" class="printfile">
+	<div class="dbot-caption">Mario</div>
+	<img src="/static/preview_mario.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="ferrari_f1" class="printfile">
+	<div class="dbot-caption">Ferrari F1 Car</div>
+	<img src="/static/preview_ferrari_f1.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="mclarenf1" class="printfile">
+	<div class="dbot-caption">McLaren F1</div>
+	<img src="/static/preview_mclarenf1.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="supra" class="printfile">
+	<div class="dbot-caption">Toyota Supra</div>
+	<img src="/static/preview_supra.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="skyline" class="printfile">
+	<div class="dbot-caption">Nissan Skyline R34</div>
+	<img src="/static/preview_skyline.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="xxxtentacaion" class="printfile">
+	<div class="dbot-caption">XXXTENTACION</div>
+	<img src="/static/preview_xxxtentacaion.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="goku" class="printfile">
+	<div class="dbot-caption">Dragonball Z Goku</div>
+	<img src="/static/preview_goku.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="Peely" class="printfile">
+	<div class="dbot-caption">Fortnite Peely</div>
+	<img src="/static/preview_peely.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="pikachu" class="printfile">
+	<div class="dbot-caption">Pikachu</div>
+	<img src="/static/preview_pikachu.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="dj_catnip" class="printfile">
+	<div class="dbot-caption">DJ Catnip</div>
+	<img src="/static/preview_dj_catnip.png" class="pure-img dbot-preview" />
+	</a>
+</div>
+<!--<div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+	<a data-filename="makerfairelogo" class="printfile">
+	<div class="dbot-caption">Maker Faire Logo</div>
+	<img src="/static/preview_makerfairelogo.png" class="pure-img dbot-preview" />
+	</a>
+</div>-->
+
+</div>
+
+</body>
+</html>
